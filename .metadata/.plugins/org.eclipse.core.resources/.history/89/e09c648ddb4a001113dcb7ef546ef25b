@@ -1,0 +1,29 @@
+//NOTE: This calculator can only be used to calculate characters from one to a maximum of one thousand. 
+/*
+The private integer array called 'countedCharacters' has the number of characters in 
+*/
+public class CharactersCalculator {
+
+	
+	
+	//private []int = ;
+	
+	public int totalCharacters; 
+	public CharactersCalculator(){
+		totalCharacters = 0;
+	}
+	
+	public void calculateCharacters(int inputNumber){
+		
+	}
+
+
+	public static void main(){
+		int inputValue = 1000;
+		CharactersCalculator CC = new CharactersCalculator();
+		CC.calculateCharacters(inputValue);
+		System.out.println("The total number of characters needed to write 1 to " + inputValue + " is " + CC.totalCharacters);
+	}
+	
+}
+

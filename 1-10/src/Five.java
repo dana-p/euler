@@ -1,0 +1,28 @@
+/*2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+ * 
+ * What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+*/
+
+public class Five {
+	public int smallestNumber = 2*3*5*7*11*13*17*19; //All the prime numbers, so the smallest number MUST be at least this big
+	
+	public Five(){
+		while (true){
+			smallestNumber+=2;
+			for (int i = 3; i < 21; i++){
+				if (smallestNumber % i != 0)
+					break;
+				else if (i == 20){
+					return;
+				}
+			}
+		}
+	}
+	
+	
+	public static void main(String args[]){
+		Five answer = new Five();
+		System.out.println(answer.smallestNumber);
+	}
+	
+}//232792560

@@ -1,0 +1,21 @@
+
+public class CharactersCalculator {
+
+	public int totalCharacters; 
+	public CharactersCalculator(){
+		totalCharacters = 0;
+	}
+	
+	public void calculateCharacters(int inputNumber){
+		
+	}
+
+
+	public static void main(){
+		CharactersCalculator CC = new CharactersCalculator();
+		CC.calculateCharacters(1000);
+		System.out.println("The total number of characters needed to write one to one thousand is " + CC.totalCharacters);
+	}
+	
+}
+

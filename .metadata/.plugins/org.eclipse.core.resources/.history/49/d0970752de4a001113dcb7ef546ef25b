@@ -1,0 +1,99 @@
+//NOTE: This calculator can only be used to calculate characters from one to a maximum of one thousand. 
+/*
+The private integer array called 'countedCharacters' has the number of characters in different numbers.
+For example, in countedCharacters[0], the number 3 is put, which stands for 'and'
+in countedCharacters[1], the number '3' is put, which stands for the number of characters in 'one'
+Here is the complete list of all array elements:
+ [0]= 3 ('and'), 	 [1]= 3 ('one'), 		 [2]= 3 ('two'),		 [3]= 5 ('three'),
+ [4]= 4 ('four'), 	 [5]= 4 ('five'), 		 [6]= 3 ('six'), 		 [7]= 5 ('seven'), 
+ [8]= 5 ('eight'), 	 [9]= 4 ('nine'), 		[10]= 3 ('ten'), 		[11]= 6 ('eleven'), 
+[12]= 6 ('twelve'), [13]= 8 ('thirteen'), 	[14]= 8 ('fourteen'),	[15]= 7 ('fifteen'), 
+[16]= 7 ('sixteen'),[17]= 9 ('seventeen'), 	[18]= 8 ('eighteen'),	[19]= 8 ('nineteen'), 
+[20]= 6 ('twenty'), [21]= 0 (''), 			[22]= 0 (''), 			[23]= 6 ('thirty'), 
+[24]= 5 ('forty'), 	[25]= 5 ('fifty'), 		[26]= 5 ('sixty'), 		[27]= 7 ('seventy'), 
+[28]= 6 ('eighty'), [29]= 6 ('ninety'), 	[30]= 7 ('hundred'), 	[31]= 8 ('thousand')
+
+*NOTE: Elements 21 and 22 are skipped. It seems easier to remember that element 23 is related to '30'
+*element 24 is related to '40', 25 to '50', etc. 
+*/
+public class CharactersCalculator {
+
+	private int[] countedCharacters = 
+	{3, 3, 3, 5,
+	 4, 4, 3, 5,
+	 5, 4, 3, 6,
+	 6, 8, 8, 7,
+	 7, 9, 8, 8,
+	 6, 0, 0, 6,
+	 5, 5, 5, 7,
+	 6, 6, 7, 8};
+	
+	private int totalCharacters; 
+	public CharactersCalculator(){
+		totalCharacters = 0;
+	}
+	
+	public int get_totalCharacters(){
+		return totalCharacters;
+	}
+	
+	public void calculateCharacters(int inputNumber){
+		// First, an error check is performed, to make sure the inputNumber is a valid number. 
+		if (inputNumber > 1000 || inputNumber < 1){
+			System.out.println ("I'm sorry, but the input number cannot be bigger than 1000 or smaller than 1!");
+			return; 
+		}
+ 		
+		// The needed integers are declared. They will be modified with each iteration of the for-loop
+		int underHundred, tens, hundreds, thousands, underTen;
+		
+		for (int i = 1; i <= inputNumber; i++){
+			underHundred = i % 100; // This represents the last 2 digits of the 'i'
+			tens = underHundred / 10; // This represents the second last digit of the 'i' integer
+			hundreds = i / 100;  	  // This represents the total number of hundreds in the 'i' integer
+			thousands = i / 1000;   // This represents the total number of thousands in the 'i' integer
+			underTen = i % 10;      // This represents the last digit of 'i'
+			
+			{	// First we check if the underHundred is less or equal to twenty, but larger than 0
+				if (underHundred <= 20 && underHundred > 0) 
+					totalCharacters += countedCharacters[underHundred]; 
+				// ... or if the last digit of 'i' is smaller than 10, but bigger than 0
+				else if (underTen < 10 && underTen > 0){
+					totalCharacters += countedCharacters[underTen];
+					
+					// If 'i is above 100, and underTen is above 0, (and the number is not 1000), 
+					// then the number will contain also an 'and' (eg. one hundred AND five)
+					if (hundreds > 0 && thousands == 0)
+						totalCharacters += countedCharacters[0]; // this value is '3' for the 3 chars in 'and' 
+				}
+			}
+			
+			{	//Now we check if the second last digit was between 3 and 9
+				if (tens > 2 && tens < 10)
+					totalCharacters += countedCharacters[20+tens];
+			}	                                     
+				
+			{ 	//Now we check if the number is above 100, but below 1000
+				if (hundreds < 10 && hundreds > 0)
+					totalCharacters += countedCharacters[30] + countedCharacters[hundreds];
+					
+			}
+			
+			{	//Lastly, we check if the number is 1000
+				if (thousands == 1)
+					totalCharacters += countedCharacters [1] + countedCharacters[31];
+			}
+		}
+	}
+
+
+	public static void main(String args[]){
+		int inputValue = 1000;
+		CharactersCalculator CC = new CharactersCalculator();
+		CC.calculateCharacters(inputValue);
+		System.out.println("The total number of characters needed to write 1 to " + inputValue + " is " + CC.get_totalCharacters());
+		//Result should be 21124. 
+	}
+	
+}
+

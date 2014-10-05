@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;CharactersCalculator&apos; to &apos;Seventeen&apos;&#x0D;&#x0A;- Original project: &apos;11-20&apos;&#x0D;&#x0A;- Original element: &apos;CharactersCalculator&apos;&#x0D;&#x0A;- Renamed element: &apos;Seventeen&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;CharactersCalculator&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;{CharactersCalculator.java[CharactersCalculator" matchStrategy="1" name="Seventeen" qualified="false" references="true" similarDeclarations="false" stamp="1327893003614" textual="false" version="1.0"/>
+</session>
