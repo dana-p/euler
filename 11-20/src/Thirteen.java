@@ -132,9 +132,7 @@ public class Thirteen
 		}
 		
 		_vectorAnswer.push(firstCarryOver); 
-		System.out.println("Added " + firstCarryOver + " and length is now " + _vectorAnswer.size() ); 
 		_vectorAnswer.push(secondCarryOver); 
-		System.out.println("Added " + secondCarryOver + " and length is now " + _vectorAnswer.size() ); 
 	}
 	
 	private void AddValues(int pos){
@@ -146,7 +144,6 @@ public class Thirteen
 		value -= 4800; // Normalize for ASCII values of the 
 		
 		_vectorAnswer.push(value%10);
-		System.out.println("Added " + value%10 + " and length is now " + _vectorAnswer.size() ); 
 		
 		firstCarryOver = (int)((value/10)%10) + secondCarryOver; 
 		secondCarryOver = (int)value/100; 
